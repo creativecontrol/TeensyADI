@@ -49,10 +49,10 @@ ResponsiveAnalogRead analog2Vals[numAnalog2];
 // ResponsiveAnalogRead analog3Vals[numAnalog3];
 
 // Analog scaling
-#define HIGH_VAL 511
-#define LOW_VAL 213
+#define HIGH_VAL 1023
+#define LOW_VAL 0
 
-#define HIGH_TARGET 130
+#define HIGH_TARGET 127
 #define LOW_TARGET 0
 
 int digital1Vals[numDigital1];
@@ -113,7 +113,7 @@ void loop() {
 
   // Analog 1
   for (int i=0; i<numAnalog1; i++) {
-    int reading = scaleReading(analog1.readADC(i));
+    int reading = analog1.readADC(i) / 4;
     
     if (DEBUG) {
       Serial.print("Analog 1 ");
@@ -128,7 +128,7 @@ void loop() {
 
   // Analog 2
   for (int i=0; i<numAnalog2; i++) {
-    int reading = scaleReading(analog2.readADC(i));
+    int reading = analog2.readADC(i) / 4;
     
     if (DEBUG) {
       Serial.print("Analog 2 ");
